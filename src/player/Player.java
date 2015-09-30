@@ -1,4 +1,4 @@
-package card.player;
+package player;
 
 public class Player 
 {
