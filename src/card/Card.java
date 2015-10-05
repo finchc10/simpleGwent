@@ -1,6 +1,6 @@
 package card;
 
-public abstract class Card 
+public class Card
 {
 	private final static String  imageRoot = "/src/card/img";
 	private String  cardName;
@@ -10,7 +10,7 @@ public abstract class Card
 	private Integer leftRank;
 	private String  controller;
 	
-	public Card(String controller, String cardName, String imagePath, int topRank, int rightRank, int bottomRank, int leftRank)
+	public Card(String controller, String cardName, int topRank, int rightRank, int bottomRank, int leftRank)
 	{
 		this.cardName   = cardName;
 		this.topRank    = new Integer(topRank);

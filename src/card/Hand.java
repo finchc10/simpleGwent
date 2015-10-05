@@ -25,4 +25,14 @@ public class Hand
 	{
 		return cardsInHand.get(index);
 	}
+	
+	public Integer getHandSize()
+	{
+		return cardsInHand.size();
+	}
+	
+	public String toString()
+	{
+		return cardsInHand.toString();
+	}
 }
