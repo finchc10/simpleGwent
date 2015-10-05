@@ -2,21 +2,22 @@ package card;
 
 public abstract class Card 
 {
-	String  cardName;
-	Integer topRank;
-	Integer rightRank;
-	Integer bottomRank;
-	Integer leftRank;
-	String  imagePath;
+	private final static String  imageRoot = "/src/card/img";
+	private String  cardName;
+	private Integer topRank;
+	private Integer rightRank;
+	private Integer bottomRank;
+	private Integer leftRank;
+	private String  controller;
 	
-	public Card(String cardName, String imagePath, int topRank, int rightRank, int bottomRank, int leftRank)
+	public Card(String controller, String cardName, String imagePath, int topRank, int rightRank, int bottomRank, int leftRank)
 	{
 		this.cardName   = cardName;
-		this.imagePath  = imagePath;
 		this.topRank    = new Integer(topRank);
 		this.rightRank  = new Integer(rightRank);
 		this.bottomRank = new Integer(bottomRank);
 		this.leftRank   = new Integer(leftRank);
+		this.controller = controller;
 	}
 	
 	public Integer getOpposingRank(Character direction)
@@ -32,6 +33,11 @@ public abstract class Card
 		}
 		
 		return rank;
+	}
+	
+	public String getImagePath()
+	{
+		return imageRoot + "/" + controller + "/" + cardName + ".png";
 	}
 	
 	public String toString()
