@@ -58,4 +58,16 @@ public class Card
 		
 		return stringer.toString();
 	}
+	
+	public void flip()
+	{
+		if(controller.equals("red"))
+		{
+			controller = "blue";
+		}
+		else
+		{
+			controller = "red";
+		}
+	}
 }
