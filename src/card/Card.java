@@ -1,5 +1,14 @@
+/**
+ * @author Donald Aufiero
+ */
 package card;
 
+/**
+ * Represents a card used to play the game Triple Triad.
+ * Each cardinal direction (top, right, bottom, left) as a number associated with it, known as it's rank.
+ * When a card is played, the ranks of all neighboring opposing cards are compared. If the played card has
+ * a higher rank than any of the neighboring cards, they are flipped under that player's control.
+ */
 public class Card
 {
 	private final static String  imageRoot = "/src/card/img";
@@ -8,9 +17,9 @@ public class Card
 	private Integer rightRank;
 	private Integer bottomRank;
 	private Integer leftRank;
-	private String  controller;
+	private boolean  controller;
 	
-	public Card(String controller, String cardName, int topRank, int rightRank, int bottomRank, int leftRank)
+	public Card(boolean controller, String cardName, int topRank, int rightRank, int bottomRank, int leftRank)
 	{
 		this.cardName   = cardName;
 		this.topRank    = new Integer(topRank);
@@ -20,16 +29,16 @@ public class Card
 		this.controller = controller;
 	}
 	
-	public Integer getOpposingRank(Character direction)
+	public Integer getDirectionRank(Character direction)
 	{
 		Integer rank = 0;
 		
 		switch(direction)
 		{
-		    case 't': rank = this.bottomRank; break;
-		    case 'r': rank = this.leftRank  ; break;
-		    case 'b': rank = this.topRank   ; break;
-		    case 'l': rank = this.rightRank ; break;
+		    case 'b': rank = this.bottomRank; break;
+		    case 'l': rank = this.leftRank  ; break;
+		    case 't': rank = this.topRank   ; break;
+		    case 'r': rank = this.rightRank ; break;
 		}
 		
 		return rank;
@@ -45,6 +54,17 @@ public class Card
 		StringBuilder stringer = new StringBuilder();
 		
 		stringer.append(cardName);
+		stringer.append(" ");
+		
+		if(controller)
+		{
+			stringer.append("[B]");
+		}
+		else
+		{
+			stringer.append("[R]");
+		}
+		
 		stringer.append(": ");
 		stringer.append("{t: ");
 		stringer.append(topRank);
@@ -59,15 +79,25 @@ public class Card
 		return stringer.toString();
 	}
 	
+	public boolean getController()
+	{
+		return controller;
+	}
+	
 	public void flip()
 	{
-		if(controller.equals("red"))
+		if(controller)
 		{
-			controller = "blue";
+			controller = false;
 		}
 		else
 		{
-			controller = "red";
+			controller = true;
 		}
+	}
+	
+	public Card copy()
+	{
+		return new Card(controller, cardName, bottomRank, bottomRank, bottomRank, bottomRank);
 	}
 }

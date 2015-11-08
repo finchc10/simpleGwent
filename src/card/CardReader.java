@@ -1,3 +1,6 @@
+/**
+ * @author Cory Finch
+ */
 package card;
 
 import java.io.File;
@@ -6,6 +9,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Random;
 
+/**
+ * Reads cards in from a from a .txt file to generate a Player's hand.
+ */
 public class CardReader 
 {
 	public static void main(String[] args)
@@ -29,8 +35,14 @@ public class CardReader
 			while(cardReader.hasNext())
 			{
 				cardValues = cardReader.nextLine().split(",");
+				boolean color = false;
 				
-				possibleCards.add(new Card(playerColor, cardValues[0], new Integer(cardValues[1]), new Integer(cardValues[2]), 
+				if(playerColor.equals("blue"))
+				{
+					color = true;
+				}
+				
+				possibleCards.add(new Card(color, cardValues[0], new Integer(cardValues[1]), new Integer(cardValues[2]), 
 						new Integer(cardValues[3]), new Integer(cardValues[4])));
 			}
 			
